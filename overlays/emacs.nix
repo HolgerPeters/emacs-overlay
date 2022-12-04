@@ -122,15 +122,18 @@ let
 
   emacsGit = mkGitEmacs "emacs-git" ../repos/emacs/emacs-master.json { withSQLite3 = true; withWebP = true; };
 
+
   emacsPgtk = mkPgtkEmacs "emacs-pgtk" ../repos/emacs/emacs-master.json { withSQLite3 = true; withWebP = true; withGTK3 = true; };
 
   emacsUnstable = (mkGitEmacs "emacs-unstable" ../repos/emacs/emacs-unstable.json { noTreeSitter = true; });
+
+  emacsBleeding = mkGitEmacs "emacs-bleeding" ../repos/emacs/emacs-bleeding.json { withSQLite3 = true; withWebP = true; };
 
   emacsLsp = (mkGitEmacs "emacs-lsp" ../repos/emacs/emacs-lsp.json { noTreeSitter = true; });
 
 in
 {
-  inherit emacsGit emacsUnstable;
+  inherit emacsGit emacsUnstable emacsBleeding;
 
   inherit emacsPgtk;
 
